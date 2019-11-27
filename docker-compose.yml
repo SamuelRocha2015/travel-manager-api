@@ -1,0 +1,10 @@
+version: "3.5"
+services:
+
+  mysqlsrv:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "traveldb"
+    ports:
+      - "3306:3306"
