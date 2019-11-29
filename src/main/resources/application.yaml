@@ -3,6 +3,10 @@ spring:
     url: jdbc:mysql://localhost:3306/traveldb
     username: root
     password: root
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    application:
+      name: travel-manager-api
 
   jpa:
     properties:
@@ -11,6 +15,12 @@ spring:
         ddl-auto: create
 
 jwt:
-  secret: travelManager_Key
-  #expiration = 7 days
-  expiration: 604800
+  secret: travelManager_KeyJWT@20191129
+  # 1 DIA
+  expirationInMs: 86400000
+
+# 30 MINUTOS
+# expirationInMs = 1800000
+# 1 MINUTO
+# expirationInMs = 60000
+
