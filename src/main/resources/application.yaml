@@ -10,3 +10,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         ddl-auto: create
 
+jwt:
+  secret: travelManager_Key
+  #expiration = 7 days
+  expiration: 604800
