@@ -10,7 +10,7 @@ addons:
       secure: "43092d8fe6ff5c19a7ecec981f4a5ea618fb3024"
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar  
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar  -DargLine='-Xms1024m -Xmx2048m
 #  - mvn test jacoco:report
 #after_success:
 #  - mvn coveralls:report
