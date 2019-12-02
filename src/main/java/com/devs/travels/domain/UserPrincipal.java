@@ -1,7 +1,6 @@
-package com.devs.travels.domain.security;
+package com.devs.travels.domain;
 
 
-import com.devs.travels.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

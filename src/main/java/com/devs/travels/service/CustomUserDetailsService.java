@@ -2,7 +2,7 @@ package com.devs.travels.service;
 
 
 import com.devs.travels.domain.User;
-import com.devs.travels.domain.security.UserPrincipal;
+import com.devs.travels.domain.UserPrincipal;
 import com.devs.travels.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

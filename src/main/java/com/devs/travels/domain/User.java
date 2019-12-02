@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @Entity
-@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"email", "cpf"})})
+@Table(name = "USER", uniqueConstraints = {@UniqueConstraint(columnNames = {"email", "cpf"})})
 public class User extends UserDateAudit {
 
     @Id
@@ -27,6 +27,7 @@ public class User extends UserDateAudit {
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE", length = 20)
     private RoleEnum role;
