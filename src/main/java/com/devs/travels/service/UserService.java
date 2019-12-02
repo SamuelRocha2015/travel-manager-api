@@ -35,6 +35,6 @@ public class UserService {
 	//TODO create service who consumes token-generator-api (https://token-generator-davi.herokuapp.com/swagger-ui.html),
     //TODO and verify a valid token by email to activate a user
 	private void activeUSer(User user) {
-        user.setIsActive(true);
+        user.setActive(true);
     }
 }
