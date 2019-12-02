@@ -1,6 +1,8 @@
 package com.devs.travels.config;
 
+import com.devs.travels.domain.JwtAuthentication;
 import com.devs.travels.domain.User;
+import com.devs.travels.domain.dto.JwtAuthenticationDTO;
 import com.devs.travels.domain.dto.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,8 +15,10 @@ public interface DTOMapper {
 
     DTOMapper INSTANCE = Mappers.getMapper( DTOMapper.class );
 
-    @Mapping(target = "role", constant = "EMPLOYEE")
-    UserDTO toEmployeeUserDTO(User entity);
+    @Mapping(target = "role", constant = "ROLE_EMPLOYEE")
+    User toEmployeeUserDTO(UserDTO entity);
 
-    User toUserDto(UserDTO userDTO);
+    JwtAuthenticationDTO toJwtAthenticationDTO(JwtAuthentication entity);
+
+    UserDTO toUserDto(User entity);
 }

@@ -1,7 +1,9 @@
 package com.devs.travels.domain;
 
 import com.devs.travels.domain.audit.UserDateAudit;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -32,11 +34,13 @@ public class User extends UserDateAudit {
     @Column(name = "ROLE", length = 20)
     private RoleEnum role;
 
-    @Size(max = 50)
-    @Column(name = "PASSWORD", length = 50)
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
     @Size(max = 11, min = 11)
-    @Column(name = "CPF", length = 11)
+    @Column(name = "CPF", length = 11, unique = true, nullable = false)
     private String cpf;
+
+    @Column(name = "IS_ACTIVE")
+    private Boolean isActive;
 }
