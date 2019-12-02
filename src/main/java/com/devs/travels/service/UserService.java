@@ -29,8 +29,8 @@ public class UserService {
     public void createUser(UserDTO userDTO) {
         User user = new User(userRequest);
 
-        usuario.setSenha(passwordEncoder.encode(userRequest.getPassword()));
-
-        usuarioRepository.save(usuario);
+//        usuario.setSenha(passwordEncoder.encode(userRequest.getPassword()));
+//
+//        usuarioRepository.save(usuario);
     }
 }
