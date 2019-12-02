@@ -44,7 +44,7 @@ public class AuthenticationController {
         User user = usuarioRepository.findByEmail(loginDTO.getEmail())
                 .orElseThrow(() -> new NotFoundException("User Not Found."));
 
-        if (user.getIsActive()) {
+        if (user.isActive()) {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             loginDTO.getEmail(),

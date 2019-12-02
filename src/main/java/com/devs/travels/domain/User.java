@@ -42,5 +42,5 @@ public class User extends UserDateAudit {
     private String cpf;
 
     @Column(name = "IS_ACTIVE")
-    private Boolean isActive;
+    private boolean isActive;
 }
