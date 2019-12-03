@@ -29,16 +29,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final CustomUserDetailsService customUserDetailsService;
 	private final JwtAuthenticationEntryPoint unauthorizedHandler;
+    private final JwtTokenProvider tokenProvider;
 
 	@Autowired
-	public SecurityConfig(CustomUserDetailsService customUserDetailsService, JwtAuthenticationEntryPoint unauthorizedHandler){
+	public SecurityConfig(CustomUserDetailsService customUserDetailsService,
+                          JwtAuthenticationEntryPoint unauthorizedHandler, JwtTokenProvider tokenProvider){
 		this.customUserDetailsService = customUserDetailsService;
 		this.unauthorizedHandler = unauthorizedHandler;
-	}
+        this.tokenProvider = tokenProvider;
+    }
 
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter();
+        return new JwtAuthenticationFilter(tokenProvider, customUserDetailsService);
     }
 
     @Override

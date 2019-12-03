@@ -1,4 +1,4 @@
-package com.devs.travels.config;
+package com.devs.travels.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

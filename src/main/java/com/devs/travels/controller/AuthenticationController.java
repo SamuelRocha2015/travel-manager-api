@@ -10,7 +10,6 @@ import com.devs.travels.exception.BadRequestException;
 import com.devs.travels.exception.NotFoundException;
 import com.devs.travels.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,21 +26,21 @@ import javax.validation.Valid;
 public class AuthenticationController {
 
     private final AuthenticationManager authenticationManager;
-    private final UserRepository usuarioRepository;
+    private final UserRepository userRepository;
     private final JwtTokenProvider tokenProvider;
 
     @Autowired
-    public AuthenticationController(AuthenticationManager authenticationManager, UserRepository usuarioRepository,
+    public AuthenticationController(AuthenticationManager authenticationManager, UserRepository userRepository,
                                     JwtTokenProvider tokenProvider) {
         this.authenticationManager = authenticationManager;
-        this.usuarioRepository = usuarioRepository;
+        this.userRepository = userRepository;
         this.tokenProvider = tokenProvider;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginDTO) {
+    public JwtAuthenticationDTO authenticateUser(@Valid @RequestBody LoginDTO loginDTO) {
 
-        User user = usuarioRepository.findByEmail(loginDTO.getEmail())
+        User user = userRepository.findByEmail(loginDTO.getEmail())
                 .orElseThrow(() -> new NotFoundException("User Not Found."));
 
         if (user.isActive()) {
@@ -55,7 +54,7 @@ public class AuthenticationController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String jwt = tokenProvider.generateToken(authentication);
-            return ResponseEntity.ok(DTOMapper.INSTANCE.toJwtAthenticationDTO(new JwtAuthentication(jwt)));
+            return DTOMapper.INSTANCE.toJwtAthenticationDTO(new JwtAuthentication(jwt));
         } else {
             throw new BadRequestException("Inactive user or incorrect credentials");
         }

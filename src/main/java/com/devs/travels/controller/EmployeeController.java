@@ -1,5 +1,6 @@
 package com.devs.travels.controller;
 
+import com.devs.travels.config.DTOMapper;
 import com.devs.travels.domain.User;
 import com.devs.travels.domain.dto.UserDTO;
 import com.devs.travels.exception.ForbiddenException;
@@ -26,14 +27,6 @@ public class EmployeeController {
 
     @PostMapping("/register")
     public User createAppointment(@Valid @RequestBody UserDTO userDTO) {
-        boolean existsByEmail = repository.existsByEmail(userDTO.getEmail());
-        boolean existsByCpf = repository.existsByCpf(userDTO.getCpf());
-
-        if(existsByEmail)
-            throw new ForbiddenException("A User with email: " + userDTO.getEmail() + " already exists");
-        else if(existsByCpf)
-            throw new ForbiddenException("A User with cpf: " + userDTO.getCpf() + " already exists");
-
-        return service.createEmplyee(userDTO);
+        return service.createEmplyee(DTOMapper.INSTANCE.toEmployeeUserDTO(userDTO));
     }
 }
