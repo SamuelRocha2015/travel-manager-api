@@ -24,9 +24,11 @@ public class UserDTO {
     @JsonIgnore
     private String role;
 
+    @NotNull
     @Size(max = 50)
     private String password;
 
+    @NotNull
     @Size(max = 11, min = 11)
     private String cpf;
 }
