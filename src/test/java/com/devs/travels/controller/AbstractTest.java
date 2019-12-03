@@ -16,6 +16,7 @@ public class AbstractTest {
     static final int HTTP_STATUS_CREATED = 201;
     static final int HTTP_STATUS_OK = 200;
     static final int HTTP_BAD_REQUEST = 400;
+    static final int HTTP_CONFLICT = 409;
 
     MockMvc mvc;
 
