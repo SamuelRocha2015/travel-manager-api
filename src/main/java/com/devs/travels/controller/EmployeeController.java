@@ -27,6 +27,6 @@ public class EmployeeController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@Valid @RequestBody UserDTO userDTO) {
-        return service.createEmployee(mapper.toUser(userDTO));
+        return service.createEmployee(mapper.toEmployeeUser(userDTO));
     }
 }
