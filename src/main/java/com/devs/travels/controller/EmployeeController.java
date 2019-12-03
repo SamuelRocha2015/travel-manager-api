@@ -25,6 +25,6 @@ public class EmployeeController {
 
     @PostMapping("/register")
     public User createAppointment(@Valid @RequestBody UserDTO userDTO) {
-        return service.createEmplyee(mapper.toEmployeeUserDTO(userDTO));
+        return service.createEmployee(mapper.toEmployeeUserDTO(userDTO));
     }
 }

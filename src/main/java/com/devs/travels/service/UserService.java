@@ -19,14 +19,16 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User createEmplyee(User user) {
-        boolean valid = userRepository.existsByEmailOrCpf(user.getEmail(), user.getCpf());
-
-        if (valid)
+    public User createEmployee(User user) {
+        if (userRegistered(user))
             throw new ForbiddenException("This email or cpf is already used.");
 
         activeUSer(user);
         return createUser(user);
+    }
+
+    private boolean userRegistered(User user) {
+        return userRepository.existsByEmailOrCpf(user.getEmail(), user.getCpf());
     }
 
     private User createUser(User user) {

@@ -113,7 +113,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.21.0</version>
+                <version>2.22.0</version>
                 <configuration>
                     <threadCount>4</threadCount>
                     <parallel>all</parallel>
@@ -121,8 +121,13 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -162,7 +167,7 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>**/configs/*, **/models/**, **/repositories/*,**/exceptions/*,/TravelApiApplication.java
+                        <exclude>**/config/*, **/domain/**, **/repository/*,**/exception/*,/TravelApiApplication.java
                         </exclude>
                     </excludes>
                 </configuration>
