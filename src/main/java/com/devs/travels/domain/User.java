@@ -1,9 +1,7 @@
 package com.devs.travels.domain;
 
 import com.devs.travels.domain.audit.UserDateAudit;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
