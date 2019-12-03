@@ -56,7 +56,7 @@ public class AuthenticationController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String jwt = tokenProvider.generateToken(authentication);
-            return mapper.toJwtAthenticationDTO(new JwtAuthentication(jwt));
+            return mapper.toJwtAuthenticationDTO(new JwtAuthentication(jwt));
         } else {
             throw new BadRequestException("Inactive user or incorrect credentials");
         }

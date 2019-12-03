@@ -1,6 +1,8 @@
 package com.devs.travels.databuilder;
 
+import com.devs.travels.config.DTOMapper;
 import com.devs.travels.domain.User;
+import com.devs.travels.domain.dto.UserDTO;
 
 public class UserBuilder {
 
@@ -22,5 +24,9 @@ public class UserBuilder {
         user.setActive(Boolean.TRUE);
         user.setId(123L);
         return user;
+    }
+
+    public UserDTO userDTOMock(){
+        return DTOMapper.INSTANCE.toUserDto(user);
     }
 }

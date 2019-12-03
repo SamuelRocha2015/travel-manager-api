@@ -16,9 +16,9 @@ public interface DTOMapper {
     DTOMapper INSTANCE = Mappers.getMapper( DTOMapper.class );
 
     @Mapping(target = "role", constant = "ROLE_EMPLOYEE")
-    User toEmployeeUserDTO(UserDTO entity);
+    User toUser(UserDTO entity);
 
-    JwtAuthenticationDTO toJwtAthenticationDTO(JwtAuthentication entity);
+    JwtAuthenticationDTO toJwtAuthenticationDTO(JwtAuthentication entity);
 
     UserDTO toUserDto(User entity);
 }

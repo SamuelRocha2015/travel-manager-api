@@ -1,10 +1,10 @@
 package com.devs.travels.controller;
 
 import com.devs.travels.config.DTOMapper;
-import com.devs.travels.domain.User;
 import com.devs.travels.domain.dto.UserDTO;
 import com.devs.travels.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,7 +24,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/register")
-    public User createAppointment(@Valid @RequestBody UserDTO userDTO) {
-        return service.createEmployee(mapper.toEmployeeUserDTO(userDTO));
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserDTO create(@Valid @RequestBody UserDTO userDTO) {
+        return mapper.toUserDto(service.createEmployee(mapper.toUser(userDTO)));
     }
 }
