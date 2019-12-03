@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
+    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
+        this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -28,12 +28,12 @@ public class UserService {
     }
 
     private boolean userRegistered(User user) {
-        return userRepository.existsByEmailOrCpf(user.getEmail(), user.getCpf());
+        return repository.existsByEmailOrCpf(user.getEmail(), user.getCpf());
     }
 
     private User createUser(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		return userRepository.save(user);
+		return repository.save(user);
 	}
 
     //TODO create service who consumes token-generator-api (https://token-generator-davi.herokuapp.com/swagger-ui.html),
