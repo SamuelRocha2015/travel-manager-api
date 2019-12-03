@@ -1,17 +1,21 @@
 package com.devs.travels.controller;
 
-import com.devs.travels.databuilder.UserBuilder;
-import com.devs.travels.domain.dto.UserDTO;
-import com.devs.travels.service.UserService;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.devs.travels.databuilder.builder.UserBuilder;
+import com.devs.travels.domain.dto.UserDTO;
+import com.devs.travels.service.UserService;
 
 public class EmployeeControllerTest extends AbstractTest  {
     private static final String BASE_URL = "/v1/employee";
@@ -47,17 +51,17 @@ public class EmployeeControllerTest extends AbstractTest  {
     }
 
 
-    @Test
-    void shouldStatus400WhenCreateUserNotValid() throws Exception{
+    @ParameterizedTest
+    @MethodSource("com.devs.travels.databuilder.provider.UserProvider#provideUserDTO")
+    void shouldStatus400WhenCreateUserNotValid(UserDTO dto) throws Exception{
         String uri = BASE_URL + REGISTER;
-        userToCreate.setEmail(null); //TODO - Create other tests scenarios with parameterized
 
         mvc.perform(MockMvcRequestBuilders
                 .post(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(userToCreate)))
+                .content(mapToJson(dto)))
                 .andExpect(status().is(HTTP_BAD_REQUEST));
     }
 
-
+   
 }

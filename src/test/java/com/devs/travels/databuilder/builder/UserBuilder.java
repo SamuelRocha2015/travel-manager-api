@@ -1,4 +1,4 @@
-package com.devs.travels.databuilder;
+package com.devs.travels.databuilder.builder;
 
 import com.devs.travels.config.DTOMapper;
 import com.devs.travels.domain.User;
