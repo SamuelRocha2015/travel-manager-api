@@ -28,13 +28,15 @@ public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final JwtTokenProvider tokenProvider;
+    private final DTOMapper mapper;
 
     @Autowired
     public AuthenticationController(AuthenticationManager authenticationManager, UserRepository userRepository,
-                                    JwtTokenProvider tokenProvider) {
+                                    JwtTokenProvider tokenProvider, DTOMapper mapper) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.tokenProvider = tokenProvider;
+        this.mapper = mapper;
     }
 
     @PostMapping("/login")
@@ -54,7 +56,7 @@ public class AuthenticationController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             String jwt = tokenProvider.generateToken(authentication);
-            return DTOMapper.INSTANCE.toJwtAthenticationDTO(new JwtAuthentication(jwt));
+            return mapper.toJwtAthenticationDTO(new JwtAuthentication(jwt));
         } else {
             throw new BadRequestException("Inactive user or incorrect credentials");
         }

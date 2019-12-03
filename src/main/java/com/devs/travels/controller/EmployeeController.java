@@ -3,8 +3,6 @@ package com.devs.travels.controller;
 import com.devs.travels.config.DTOMapper;
 import com.devs.travels.domain.User;
 import com.devs.travels.domain.dto.UserDTO;
-import com.devs.travels.exception.ForbiddenException;
-import com.devs.travels.repository.UserRepository;
 import com.devs.travels.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,16 +15,16 @@ import javax.validation.Valid;
 public class EmployeeController {
 
     private final UserService service;
-    private final UserRepository repository;
+    private final DTOMapper mapper;
 
     @Autowired
-    public EmployeeController(UserService service, UserRepository repository){
+    public EmployeeController(UserService service, DTOMapper mapper){
         this.service = service;
-        this.repository = repository;
+        this.mapper = mapper;
     }
 
     @PostMapping("/register")
     public User createAppointment(@Valid @RequestBody UserDTO userDTO) {
-        return service.createEmplyee(DTOMapper.INSTANCE.toEmployeeUserDTO(userDTO));
+        return service.createEmplyee(mapper.toEmployeeUserDTO(userDTO));
     }
 }
