@@ -1,6 +1,8 @@
 package com.devs.travels.service.client;
 
 import com.devs.travels.config.client.ClientConfiguration;
+import com.devs.travels.domain.dto.client.TokenInformationDTO;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,4 +17,10 @@ public interface TokenGeneratorClient {
 
     @GetMapping("/token")
     String getToken(@RequestParam("email") String email);
+    
+    
+    @GetMapping("/token/information")
+    TokenInformationDTO getInformations(@RequestParam("token") String token);
+    
+    
 }

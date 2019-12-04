@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.devs.travels.domain.User;
 import com.devs.travels.exception.ConflictException;
 import com.devs.travels.repository.UserRepository;
+import com.devs.travels.service.client.TokenGeneratorClient;
 
 @Service
 public class UserService {
@@ -14,12 +15,14 @@ public class UserService {
     protected static final String THIS_EMAIL_OR_CPF_IS_ALREADY_USED = "This email or cpf is already used.";
     
 	private final UserRepository repository;
-    private final PasswordEncoder passwordEncoder;
-
+    private final PasswordEncoder encoder;
+    private final TokenGeneratorClient tokenGenerator;
+    
     @Autowired
-    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository repository, PasswordEncoder passwordEncoder, TokenGeneratorClient tokenGenerator) {
         this.repository = repository;
-        this.passwordEncoder = passwordEncoder;
+        this.encoder = passwordEncoder;
+        this.tokenGenerator = tokenGenerator;
     }
 
     public User createEmployee(User user) {
@@ -34,14 +37,15 @@ public class UserService {
     }
 
     private User createUser(User user) {
-    	activeUSer(user);
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+    	activeUser(user);
+		user.setPassword(encoder.encode(user.getPassword()));
 		return repository.save(user);
 	}
 
     //TODO create service who consumes token-generator-api (https://token-generator-davi.herokuapp.com/swagger-ui.html),
     //TODO and verify a valid token by email to activate a user
-    private void activeUSer(User user) {
+    private void activeUser(User user) {
         user.setActive(true);
+        tokenGenerator.getInformations(user.getEmail());
     }
 }
