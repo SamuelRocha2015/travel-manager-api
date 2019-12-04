@@ -17,6 +17,7 @@ Travels Manager is a Spring Boot API for create travel budgets.
  - Lombok Project
  - JUnit 5
  - Mockito
+ - Spring Cloud OpenFeign
 
 ## DevOps
 

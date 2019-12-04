@@ -24,6 +24,7 @@
         <maven.coveralls.plugin.version>4.3.0</maven.coveralls.plugin.version>
         <maven.jacoco.plugin.version>0.8.2</maven.jacoco.plugin.version>
         <coveralls.token>3goJHhBwkvGxS630MU5XaU5HE6ftWrrTN</coveralls.token>
+        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -77,6 +78,18 @@
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+        </dependency>
 
         <!-- Tests -->
         <dependency>
@@ -108,6 +121,19 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -167,7 +193,7 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>**/config/*, **/domain/**, **/repository/*,**/exception/*,/TravelApiApplication.java
+                        <exclude>**/service/client/*, **/config/*, **/domain/**, **/repository/*,**/exception/*,/TravelApiApplication.java
                         </exclude>
                     </excludes>
                 </configuration>
