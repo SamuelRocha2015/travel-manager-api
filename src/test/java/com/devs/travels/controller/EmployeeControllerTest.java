@@ -55,9 +55,9 @@ public class EmployeeControllerTest extends AbstractTest  {
     }
 
 
-    @ParameterizedTest
+    @ParameterizedTest(name =  "{index} - {1}")
     @MethodSource("com.devs.travels.databuilder.provider.UserProvider#provideUserDTO")
-    void shouldStatus400WhenCreateUserNotValid(UserDTO dto) throws Exception{
+    void shouldStatus400WhenCreateUserNotValid(UserDTO dto, String titleTest) throws Exception{
         String uri = BASE_URL + REGISTER;
 
         mvc.perform(MockMvcRequestBuilders
