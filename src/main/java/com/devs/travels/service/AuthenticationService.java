@@ -1,5 +1,6 @@
 package com.devs.travels.service;
 import com.devs.travels.exception.NotFoundException;
+import com.devs.travels.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
 import com.devs.travels.domain.Login;
 import com.devs.travels.domain.User;
-import com.devs.travels.repository.UserRepository;
 
 @Service
 public class AuthenticationService {
@@ -23,11 +23,8 @@ public class AuthenticationService {
 
 	public Authentication getAuthentication(Login login) {
         User user = findUser(login);
-
-        return 
-    		this.authentication.authenticate(
-        		new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword())
-    		);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword()); 
+        return  this.authentication.authenticate(authentication );
 
 	}
 

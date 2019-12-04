@@ -2,6 +2,8 @@ package com.devs.travels.service.client;
 
 import org.springframework.stereotype.Component;
 
+import com.devs.travels.domain.dto.client.TokenInformationDTO;
+
 @Component
 public class TokenGeneratorFallback implements  TokenGeneratorClient {
 
@@ -9,5 +11,10 @@ public class TokenGeneratorFallback implements  TokenGeneratorClient {
     public String getToken(String email) {
         return "NO TOKEN";
     }
+
+	@Override
+	public TokenInformationDTO getInformations(String token) {
+		return new TokenInformationDTO();
+	}
 
 }
