@@ -18,6 +18,7 @@ import com.devs.travels.databuilder.builder.UserBuilder;
 import com.devs.travels.domain.User;
 import com.devs.travels.exception.ConflictException;
 import com.devs.travels.repository.UserRepository;
+import com.devs.travels.service.client.TokenGeneratorClient;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -34,6 +35,9 @@ class UserServiceTest {
 
     @Mock
     private PasswordEncoder encoder;
+    
+    @Mock
+    private TokenGeneratorClient tokenGenerator;
 
     @BeforeEach
     void setUp() {
