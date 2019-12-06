@@ -12,6 +12,8 @@ import com.devs.travels.domain.User;
 
 @Service
 public class AuthenticationService {
+	protected static final String USER_NOT_FOUND = "User Not Found.";
+	 
 	private final UserRepository userRepository;
 	private final AuthenticationManager authentication;
 
@@ -30,7 +32,7 @@ public class AuthenticationService {
 
 	private User findUser(Login login) {
 		return userRepository.findByEmailAndActiveTrue(login.getEmail())
-				.orElseThrow(() -> new NotFoundException("User Not Found."));
+				.orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 	}
 
 }
