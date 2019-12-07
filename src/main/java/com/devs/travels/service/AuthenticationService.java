@@ -1,38 +1,37 @@
 package com.devs.travels.service;
+
+import com.devs.travels.domain.Login;
 import com.devs.travels.exception.NotFoundException;
 import com.devs.travels.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.stereotype.Service;
 import org.springframework.security.core.Authentication;
-import com.devs.travels.domain.Login;
-import com.devs.travels.domain.User;
+import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationService {
-	protected static final String USER_NOT_FOUND = "User Not Found.";
-	 
-	private final UserRepository userRepository;
-	private final AuthenticationManager authentication;
+    protected static final String USER_NOT_FOUND = "User Not Found.";
 
-	@Autowired
-	public AuthenticationService(UserRepository userRepository, AuthenticationManager authentication) {
-		this.userRepository = userRepository;
-		this.authentication = authentication;
-	}
+    private final UserRepository userRepository;
+    private final AuthenticationManager authentication;
 
-	public Authentication getAuthentication(Login login) {
-        User user = findUser(login);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(login.getEmail(),login.getPassword()); 
-        return  this.authentication.authenticate(authentication );
+    @Autowired
+    public AuthenticationService(UserRepository userRepository, AuthenticationManager authentication) {
+        this.userRepository = userRepository;
+        this.authentication = authentication;
+    }
 
-	}
+    public Authentication getAuthentication(Login login) {
+        if (!findUser(login))
+            throw new NotFoundException(USER_NOT_FOUND);
 
-	private User findUser(Login login) {
-		return userRepository.findByEmailAndIsActiveTrue(login.getEmail())
-				.orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
-	}
+        Authentication authentication = new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword());
+        return this.authentication.authenticate(authentication);
+    }
+
+    private boolean findUser(Login login) {
+        return userRepository.existsByEmailAndIsActiveTrue(login.getEmail());
+    }
 
 }

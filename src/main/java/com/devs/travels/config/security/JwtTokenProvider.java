@@ -27,7 +27,7 @@ public class JwtTokenProvider {
 	@Autowired
 	UserRepository userRepository;
 
-	public String generateToken(Authentication authentication) {
+	public String generateJwt(Authentication authentication) {
 
 		String idUser = null;
 		try {

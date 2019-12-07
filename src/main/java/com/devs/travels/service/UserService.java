@@ -1,5 +1,6 @@
 package com.devs.travels.service;
 
+import com.devs.travels.domain.dto.client.TokenInformationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,15 +38,12 @@ public class UserService {
     }
 
     private User createUser(User user) {
-    	activeUser(user);
 		user.setPassword(encoder.encode(user.getPassword()));
+        tokenGenerator.getToken(user.getEmail());
 		return repository.save(user);
 	}
 
-    //TODO create service who consumes token-generator-api (https://token-generator-davi.herokuapp.com/swagger-ui.html),
-    //TODO and verify a valid token by email to activate a user
-    private void activeUser(User user) {
-        user.setActive(true);
-        tokenGenerator.getInformations(user.getEmail());
+    public TokenInformationDTO activeUser(String token) {
+        return tokenGenerator.getInformation(token);
     }
 }

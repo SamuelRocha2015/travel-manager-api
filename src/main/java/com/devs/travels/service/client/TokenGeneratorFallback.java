@@ -13,7 +13,7 @@ public class TokenGeneratorFallback implements  TokenGeneratorClient {
     }
 
 	@Override
-	public TokenInformationDTO getInformations(String token) {
+	public TokenInformationDTO getInformation(String token) {
 		return new TokenInformationDTO();
 	}
 

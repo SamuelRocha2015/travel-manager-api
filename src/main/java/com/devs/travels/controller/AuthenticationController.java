@@ -35,7 +35,7 @@ public class AuthenticationController {
 	@PostMapping("/login")
 	public JwtAuthenticationDTO authenticateUser(@Valid @RequestBody LoginDTO loginDTO) {
 		Authentication authentication = service.getAuthentication(mapper.toLogin(loginDTO));
-		String jwt = tokenProvider.generateToken(authentication);
+		String jwt = tokenProvider.generateJwt(authentication);
 		return mapper.toJwtAuthenticationDTO(new JwtAuthentication(jwt));
 	}
 }

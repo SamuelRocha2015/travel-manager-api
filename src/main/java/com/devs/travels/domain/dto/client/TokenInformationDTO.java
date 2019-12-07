@@ -8,5 +8,5 @@ public class TokenInformationDTO {
 	private String value;
 	private String message;
 	private boolean valid;
-	
+
 }

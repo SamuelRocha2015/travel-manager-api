@@ -6,7 +6,6 @@ import com.devs.travels.domain.dto.UserDTO;
 import com.devs.travels.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,9 +24,9 @@ public class EmployeeController {
         this.mapper = mapper;
     }
 
-    @PostMapping("/register")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@Valid @RequestBody UserDTO userDTO) {
         return service.createEmployee(mapper.toEmployeeUser(userDTO));
-    }
+}
 }

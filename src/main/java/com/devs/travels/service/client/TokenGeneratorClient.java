@@ -20,7 +20,7 @@ public interface TokenGeneratorClient {
     
     
     @GetMapping("/token/information")
-    TokenInformationDTO getInformations(@RequestParam("token") String token);
+    TokenInformationDTO getInformation(@RequestParam("token") String token);
     
     
 }
