@@ -27,7 +27,6 @@ public class EmployeeController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasRole('ADMIN')")
     public User create(@Valid @RequestBody UserDTO userDTO) {
         return service.createEmployee(mapper.toEmployeeUser(userDTO));
     }
