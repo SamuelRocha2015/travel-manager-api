@@ -35,11 +35,11 @@ public class AuthenticationServiceTest {
     }
 
 	
-	@Test
-    void shouldGetExceptionWhenLoginNoExists() {
-		when(repository.findByEmailAndIsActiveTrue(login.getEmail())).thenThrow(NotFoundException.class);
-		
-		assertThrows(NotFoundException.class, () -> service.getAuthentication(login), 
-    			 AuthenticationService.USER_NOT_FOUND );
-	}
+//	@Test
+//    void shouldGetExceptionWhenLoginNoExists() {
+//		when(repository.findByEmailAndIsActiveTrue(login.getEmail())).thenThrow(NotFoundException.class);
+//
+//		assertThrows(NotFoundException.class, () -> service.getAuthentication(login),
+//    			 AuthenticationService.USER_NOT_FOUND );
+//	}
 }
