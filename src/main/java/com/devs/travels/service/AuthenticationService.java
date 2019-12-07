@@ -9,25 +9,27 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
+
 @Service
 public class AuthenticationService {
     protected static final String USER_NOT_FOUND = "User Not Found.";
 
     private final UserRepository userRepository;
-    private final AuthenticationManager authentication;
+    private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthenticationService(UserRepository userRepository, AuthenticationManager authentication) {
+    public AuthenticationService(UserRepository userRepository, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
-        this.authentication = authentication;
+        this.authenticationManager = authenticationManager;
     }
 
-    public Authentication getAuthentication(Login login) {
+    public Authentication getAuthentication(@NotNull Login login) {
         if (!findUser(login))
             throw new NotFoundException(USER_NOT_FOUND);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword());
-        return this.authentication.authenticate(authentication);
+        return this.authenticationManager.authenticate(authentication);
     }
 
     private boolean findUser(Login login) {

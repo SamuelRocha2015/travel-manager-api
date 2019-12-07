@@ -11,8 +11,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,4 +43,31 @@ public class AuthenticationServiceTest {
 		assertThrows(NotFoundException.class, () -> service.getAuthentication(login),
     			 AuthenticationService.USER_NOT_FOUND );
 	}
+
+	@Test
+	void shouldGetAuthenticationWhenLoginExists() {
+		configGetAuthenticationWhenLoginExists();
+
+		Authentication authentication = service.getAuthentication(login);
+
+		assertsGetAuthenticationWhenLoginExists(authentication);
+	}
+
+	private void configGetAuthenticationWhenLoginExists() {
+		when(repository.existsByEmailAndIsActiveTrue(login.getEmail())).thenReturn(Boolean.TRUE);
+
+		UsernamePasswordAuthenticationToken authenticationToken = getAuthenticationToken();
+		when(authentication.authenticate(any())).thenReturn(authenticationToken);
+	}
+
+	private UsernamePasswordAuthenticationToken getAuthenticationToken() {
+		return new UsernamePasswordAuthenticationToken(login.getEmail(), login.getPassword());
+	}
+
+	private void assertsGetAuthenticationWhenLoginExists(Authentication authentication) {
+		assertNotNull(authentication);
+		assertEquals(login.getEmail(), authentication.getPrincipal());
+		assertEquals(login.getPassword(), authentication.getCredentials());
+	}
+
 }
