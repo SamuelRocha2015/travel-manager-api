@@ -17,6 +17,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class UserControllerTest extends AbstractTest  {
+
     private static final String BASE_URL = "/v1/user";
     public static final String ACTIVATE_USER = "/activate-user";
     public static final String TOKEN_PARAMETER = "?token=XPTOY";
