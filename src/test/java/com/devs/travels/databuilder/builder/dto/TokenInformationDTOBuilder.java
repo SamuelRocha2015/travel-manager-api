@@ -1,4 +1,4 @@
-package com.devs.travels.databuilder.builder;
+package com.devs.travels.databuilder.builder.dto;
 
 import com.devs.travels.domain.dto.client.TokenInformationDTO;
 

@@ -1,16 +1,14 @@
 package com.devs.travels.controller;
 
-import com.devs.travels.databuilder.builder.TokenInformationDTOBuilder;
+import com.devs.travels.databuilder.builder.dto.TokenInformationDTOBuilder;
 import com.devs.travels.domain.dto.client.TokenInformationDTO;
 import com.devs.travels.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
@@ -19,8 +17,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class UserControllerTest extends AbstractTest  {
 
     private static final String BASE_URL = "/v1/user";
-    public static final String ACTIVATE_USER = "/activate-user";
-    public static final String TOKEN_PARAMETER = "?token=XPTOY";
+    private static final String ACTIVATE_USER = "/activate-user";
+    private static final String TOKEN_PARAMETER = "?token=XPTOY";
 
     @Mock
     private UserService service;
@@ -28,26 +26,23 @@ public class UserControllerTest extends AbstractTest  {
     @InjectMocks
     private UserController controller;
 
-    private TokenInformationDTO tokenInformationDTOtoCreate;
+    private TokenInformationDTO tokenDTOtoCreate;
 
     @BeforeEach
     void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(controller)
-                .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
-                .build();
-
-        tokenInformationDTOtoCreate = new TokenInformationDTOBuilder().build();
+        mvc = getMockMvc(controller);
+        tokenDTOtoCreate = new TokenInformationDTOBuilder().build();
     }
 
     @Test
     void shouldStatus200WhenActivateUser() throws Exception {
-    	when(service.activeUser(any())).thenReturn(tokenInformationDTOtoCreate);
+    	when(service.activeUser(any())).thenReturn(tokenDTOtoCreate);
     	String uri = BASE_URL + ACTIVATE_USER + TOKEN_PARAMETER;
 
     	mvc.perform(MockMvcRequestBuilders
                 .get(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(tokenInformationDTOtoCreate)))
+                .content(mapToJson(tokenDTOtoCreate)))
                 .andExpect(status().is(HTTP_STATUS_OK));
     }
 }

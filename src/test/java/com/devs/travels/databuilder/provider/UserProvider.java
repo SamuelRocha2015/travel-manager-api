@@ -15,28 +15,28 @@ public class UserProvider {
 	private static final String CPF_WITH_10_CHARS = "0000000000";
 
 	public static Stream<Arguments> provideUserDTO() {
-		UserDTO userToCreate1 = new UserBuilder().userDTOMock();
+		UserDTO userToCreate1 = new UserBuilder().buildDTO();
 		userToCreate1.setEmail(null);
 		
-		UserDTO userToCreate2 = new UserBuilder().userDTOMock();
+		UserDTO userToCreate2 = new UserBuilder().buildDTO();
 		userToCreate2.setEmail(INVALID_EMAIL);
 
-		UserDTO userToCreate3 = new UserBuilder().userDTOMock();
+		UserDTO userToCreate3 = new UserBuilder().buildDTO();
 		userToCreate3.setName(null);
 		
-		UserDTO userToCreate4 = new UserBuilder().userDTOMock();
+		UserDTO userToCreate4 = new UserBuilder().buildDTO();
 		userToCreate4.setPassword(INVALID_PASSWORD_VERY_LONG);
 
-		UserDTO userToCreate5 = new UserBuilder().userDTOMock();
+		UserDTO userToCreate5 = new UserBuilder().buildDTO();
 		userToCreate5.setPassword(null);
 
-		UserDTO userToCreate6 = new UserBuilder().userDTOMock();
+		UserDTO userToCreate6 = new UserBuilder().buildDTO();
 		userToCreate6.setCpf(CPF_WITH_12_CHARS);
 		
-		UserDTO userToCreate7 = new UserBuilder().userDTOMock();
+		UserDTO userToCreate7 = new UserBuilder().buildDTO();
 		userToCreate7.setCpf(CPF_WITH_10_CHARS);
 
-		UserDTO userToCreate8 = new UserBuilder().userDTOMock();
+		UserDTO userToCreate8 = new UserBuilder().buildDTO();
 		userToCreate8.setCpf(null);
 
 		return Stream.of(

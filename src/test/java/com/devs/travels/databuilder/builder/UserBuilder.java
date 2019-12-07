@@ -26,7 +26,7 @@ public class UserBuilder {
         return user;
     }
 
-    public UserDTO userDTOMock(){
+    public UserDTO buildDTO(){
         return DTOMapper.INSTANCE.toUserDto(user);
     }
 }

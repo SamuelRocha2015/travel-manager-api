@@ -13,13 +13,13 @@ import javax.validation.Valid;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/v1/employee")
-public class EmployeeController {
+public class EmployeeController implements MVCController {
 
     private final UserService service;
     private final DTOMapper mapper;
 
     @Autowired
-    public EmployeeController(UserService service, DTOMapper mapper){
+    public EmployeeController(UserService service, DTOMapper mapper) {
         this.service = service;
         this.mapper = mapper;
     }
@@ -28,5 +28,5 @@ public class EmployeeController {
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@Valid @RequestBody UserDTO userDTO) {
         return service.createEmployee(mapper.toEmployeeUser(userDTO));
-}
+    }
 }

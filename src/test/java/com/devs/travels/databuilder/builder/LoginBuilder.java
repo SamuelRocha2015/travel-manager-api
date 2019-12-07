@@ -1,6 +1,8 @@
 package com.devs.travels.databuilder.builder;
 
+import com.devs.travels.config.DTOMapper;
 import com.devs.travels.domain.Login;
+import com.devs.travels.domain.dto.LoginDTO;
 
 public class LoginBuilder {
 
@@ -16,4 +18,7 @@ public class LoginBuilder {
 		return login;
     }
 
+	public LoginDTO buildDTO(){
+		return DTOMapper.INSTANCE.toLoginDTO(login);
+	}
 }

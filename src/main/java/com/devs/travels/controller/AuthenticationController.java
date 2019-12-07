@@ -18,7 +18,7 @@ import com.devs.travels.service.AuthenticationService;
 
 @RestController
 @RequestMapping("/v1/authentication")
-public class AuthenticationController {
+public class AuthenticationController implements MVCController {
 
 	private final JwtTokenProvider tokenProvider;
 	private final AuthenticationService service;
