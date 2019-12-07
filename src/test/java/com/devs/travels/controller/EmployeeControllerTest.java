@@ -1,30 +1,28 @@
 package com.devs.travels.controller;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import com.devs.travels.databuilder.builder.UserBuilder;
+import com.devs.travels.domain.dto.UserDTO;
+import com.devs.travels.exception.ConflictException;
+import com.devs.travels.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.devs.travels.databuilder.builder.UserBuilder;
-import com.devs.travels.domain.dto.UserDTO;
-import com.devs.travels.exception.ConflictException;
-import com.devs.travels.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class EmployeeControllerTest extends AbstractTest  {
     private static final String BASE_URL = "/v1/employee";
     private static final String PRODUCT_ID = "/321";
-    public static final String REGISTER = "/register";
+    public static final String REGISTER = "/";
 
     @Mock
     private UserService service;
