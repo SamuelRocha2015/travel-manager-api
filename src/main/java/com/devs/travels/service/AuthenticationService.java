@@ -31,7 +31,7 @@ public class AuthenticationService {
 	}
 
 	private User findUser(Login login) {
-		return userRepository.findByEmailAndActiveTrue(login.getEmail())
+		return userRepository.findByEmailAndIsActiveTrue(login.getEmail())
 				.orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
 	}
 
