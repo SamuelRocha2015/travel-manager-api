@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+    protected static final String USER_NOT_FOUND = "User not found.";
     private final UserRepository userRepository;
 
     @Autowired
@@ -24,18 +25,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String usernameOrEmail) {
-
         User user = userRepository.findByEmail(usernameOrEmail)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("User with email : " + usernameOrEmail + " not found!"));
+                        new UsernameNotFoundException(USER_NOT_FOUND));
 
         return UserPrincipal.create(user);
     }
 
     @Transactional
     public UserDetails findUserById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new
-                UsernameNotFoundException("User with id : " + id + " not found."));
+        User user = userRepository.findById(id)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException(USER_NOT_FOUND));
 
         return UserPrincipal.create(user);
     }

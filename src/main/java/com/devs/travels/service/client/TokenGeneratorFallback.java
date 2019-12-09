@@ -2,7 +2,7 @@ package com.devs.travels.service.client;
 
 import org.springframework.stereotype.Component;
 
-import com.devs.travels.domain.dto.client.TokenInformationDTO;
+import com.devs.travels.domain.dto.client.TokenInfoDTO;
 
 @Component
 public class TokenGeneratorFallback implements  TokenGeneratorClient {
@@ -13,8 +13,8 @@ public class TokenGeneratorFallback implements  TokenGeneratorClient {
     }
 
 	@Override
-	public TokenInformationDTO getInformation(String token) {
-		return new TokenInformationDTO();
+	public TokenInfoDTO getInformation(String token) {
+		return new TokenInfoDTO();
 	}
 
 }

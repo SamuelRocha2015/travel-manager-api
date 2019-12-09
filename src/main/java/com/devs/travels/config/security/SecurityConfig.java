@@ -100,7 +100,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/v1/public/**")
 				.permitAll()
-				.antMatchers(HttpMethod.POST, "/v1/employee/register")
+				.antMatchers(HttpMethod.POST, "/v1/employee")
 				.permitAll()
                 .anyRequest()
                 .authenticated()

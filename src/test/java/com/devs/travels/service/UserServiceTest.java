@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
+import com.devs.travels.databuilder.builder.dto.TokenInfoDTOBuilder;
+import com.devs.travels.domain.dto.client.TokenInfoDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -58,7 +60,7 @@ class UserServiceTest {
         assertEquals(DEFAULT_ID, employee.getId());
         assertEquals(userCreated, user);
     }
-    
+
 
     @Test
     void shouldExceptionWhenUserInvalid() {
@@ -67,5 +69,29 @@ class UserServiceTest {
     	 assertThrows(ConflictException.class, () -> service.createEmployee(user), 
     			 UserService.THIS_EMAIL_OR_CPF_IS_ALREADY_USED );
     }
-  
+
+
+    @Test
+    void shouldGetInfoWhenActiveUser() {
+        String token = "KFJGD";
+        TokenInfoDTO infoDTO = configGetInfoWhenActiveUser(token);
+
+        TokenInfoDTO DTO = service.activeUser(token);
+
+        assertGetInfoWhenActiveUser(infoDTO, DTO);
+    }
+
+    private TokenInfoDTO configGetInfoWhenActiveUser(String token) {
+        TokenInfoDTO infoDTO = new TokenInfoDTOBuilder().build();
+        when(tokenGenerator.getInformation(token)).thenReturn(infoDTO);
+        return infoDTO;
+    }
+
+    private void assertGetInfoWhenActiveUser(TokenInfoDTO infoDTO, TokenInfoDTO DTO) {
+        assertNotNull(DTO);
+        assertEquals(infoDTO.getId(), DTO.getId());
+        assertEquals(infoDTO.getMessage(), DTO.getMessage());
+        assertEquals(infoDTO.getValue(), DTO.getValue());
+    }
+
 }

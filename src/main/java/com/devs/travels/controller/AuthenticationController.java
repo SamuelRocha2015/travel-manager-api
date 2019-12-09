@@ -4,16 +4,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.devs.travels.config.DTOMapper;
 import com.devs.travels.config.security.JwtTokenProvider;
 import com.devs.travels.domain.JwtAuthentication;
-import com.devs.travels.domain.dto.JwtAuthenticationDTO;
-import com.devs.travels.domain.dto.LoginDTO;
+import com.devs.travels.domain.dto.*;
 import com.devs.travels.service.AuthenticationService;
 
 @RestController

@@ -1,7 +1,7 @@
 package com.devs.travels.controller;
 
-import com.devs.travels.databuilder.builder.dto.TokenInformationDTOBuilder;
-import com.devs.travels.domain.dto.client.TokenInformationDTO;
+import com.devs.travels.databuilder.builder.dto.TokenInfoDTOBuilder;
+import com.devs.travels.domain.dto.client.TokenInfoDTO;
 import com.devs.travels.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,12 +26,12 @@ public class UserControllerTest extends AbstractTest  {
     @InjectMocks
     private UserController controller;
 
-    private TokenInformationDTO tokenDTOtoCreate;
+    private TokenInfoDTO tokenDTOtoCreate;
 
     @BeforeEach
     void setUp() {
         mvc = getMockMvc(controller);
-        tokenDTOtoCreate = new TokenInformationDTOBuilder().build();
+        tokenDTOtoCreate = new TokenInfoDTOBuilder().build();
     }
 
     @Test

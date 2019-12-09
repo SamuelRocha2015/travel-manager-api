@@ -1,6 +1,6 @@
 package com.devs.travels.service;
 
-import com.devs.travels.domain.dto.client.TokenInformationDTO;
+import com.devs.travels.domain.dto.client.TokenInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class UserService {
 		return repository.save(user);
 	}
 
-    public TokenInformationDTO activeUser(String token) {
+    public TokenInfoDTO activeUser(String token) {
         return tokenGenerator.getInformation(token);
     }
 }

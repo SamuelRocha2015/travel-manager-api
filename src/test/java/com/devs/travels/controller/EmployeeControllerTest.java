@@ -49,7 +49,7 @@ public class EmployeeControllerTest extends AbstractTest  {
 
 
     @ParameterizedTest(name =  "{index} - {1}")
-    @MethodSource("com.devs.travels.databuilder.provider.UserProvider#provideUserDTO")
+    @MethodSource("com.devs.travels.databuilder.provider.UserProvider#provider")
     void shouldStatus400WhenCreateUserNotValid(UserDTO dto, String titleTest) throws Exception{
         String uri = BASE_URL + REGISTER;
 

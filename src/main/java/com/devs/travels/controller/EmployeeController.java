@@ -24,7 +24,7 @@ public class EmployeeController implements MVCController {
         this.mapper = mapper;
     }
 
-    @PostMapping()
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@Valid @RequestBody UserDTO userDTO) {
         return service.createEmployee(mapper.toEmployeeUser(userDTO));
