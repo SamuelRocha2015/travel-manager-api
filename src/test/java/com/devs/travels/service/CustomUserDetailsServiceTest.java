@@ -1,5 +1,6 @@
 package com.devs.travels.service;
 
+import com.devs.travels.asserts.UserDetailsAssert;
 import com.devs.travels.databuilder.builder.UserBuilder;
 import com.devs.travels.domain.RoleEnum;
 import com.devs.travels.repository.UserRepository;
@@ -57,10 +58,8 @@ public class CustomUserDetailsServiceTest {
         when(userRepository.findById(id)).thenReturn(Optional.of(user));
 
         UserDetails userDetails  = service.findUserById(id);
-
-        assertNotNull(userDetails);
-        assertEquals(user.getEmail(), userDetails.getUsername());
-        assertEquals(user.getPassword(), userDetails.getPassword());
+        
+        UserDetailsAssert.assertThat(userDetails).EqualsTo(user);
     }
 
 
@@ -70,8 +69,6 @@ public class CustomUserDetailsServiceTest {
 
         UserDetails userDetails  = service.loadUserByUsername(email);
 
-        assertNotNull(userDetails);
-        assertEquals(user.getEmail(), userDetails.getUsername());
-        assertEquals(user.getPassword(), userDetails.getPassword());
+        UserDetailsAssert.assertThat(userDetails).EqualsTo(user);
     }
 }

@@ -1,11 +1,11 @@
 package com.devs.travels.domain;
 
+import com.devs.travels.asserts.UserDetailsAssert;
 import com.devs.travels.databuilder.builder.UserBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UserPrincipalTest {
 
@@ -21,10 +21,9 @@ public class UserPrincipalTest {
     void shouldCreateUserPrincipalWhenPassUserValid() {
         UserPrincipal principal = UserPrincipal.create(user);
 
-        assertNotNull(principal);
+        UserDetailsAssert.assertThat(principal).EqualsTo(user);
+
         assertEquals(user.getId(), principal.getId());
         assertEquals(user.getName(), principal.getName());
-        assertEquals(user.getEmail(), principal.getUsername());
-        assertEquals(user.getPassword(), principal.getPassword());
     }
 }
