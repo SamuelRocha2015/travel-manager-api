@@ -1,6 +1,5 @@
 package com.devs.travels.service;
 
-import com.devs.travels.asserts.UserDetailsAssert;
 import com.devs.travels.databuilder.builder.UserBuilder;
 import com.devs.travels.domain.RoleEnum;
 import com.devs.travels.repository.UserRepository;
@@ -17,6 +16,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static  com.devs.travels.asserts.UserDetailsAssert.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomUserDetailsServiceTest {
@@ -59,7 +59,7 @@ public class CustomUserDetailsServiceTest {
 
         UserDetails userDetails  = service.findUserById(id);
         
-        UserDetailsAssert.assertThat(userDetails).EqualsTo(user);
+        assertThat(userDetails).EqualsTo(user);
     }
 
 
@@ -69,6 +69,6 @@ public class CustomUserDetailsServiceTest {
 
         UserDetails userDetails  = service.loadUserByUsername(email);
 
-        UserDetailsAssert.assertThat(userDetails).EqualsTo(user);
+        assertThat(userDetails).EqualsTo(user);
     }
 }
