@@ -12,7 +12,6 @@ public class LoginProvider  extends BasicAuthProvider  {
         LoginDTO dto1 = new LoginBuilder().buildDTO();
         dto1.setEmail(null);
 
-
         LoginDTO dto2 = new LoginBuilder().buildDTO();
         dto2.setEmail(INVALID_EMAIL);
 

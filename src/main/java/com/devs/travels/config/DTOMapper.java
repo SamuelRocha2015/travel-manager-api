@@ -1,8 +1,10 @@
 package com.devs.travels.config;
 
+import com.devs.travels.domain.Enterprise;
 import com.devs.travels.domain.JwtAuthentication;
 import com.devs.travels.domain.Login;
 import com.devs.travels.domain.User;
+import com.devs.travels.domain.dto.EnterpriseDTO;
 import com.devs.travels.domain.dto.JwtAuthenticationDTO;
 import com.devs.travels.domain.dto.LoginDTO;
 import com.devs.travels.domain.dto.UserDTO;
@@ -27,5 +29,9 @@ public interface DTOMapper {
     LoginDTO toLoginDTO(Login entity);
     
     Login toLogin(LoginDTO dto);
+    
+    Enterprise toEnterprise(EnterpriseDTO dto);
+    
+    EnterpriseDTO toEnterpriseDTO(Enterprise entity);
     
 }
