@@ -1,6 +1,6 @@
 package com.devs.travels.repository;
 
-import com.devs.travels.domain.User;
+import com.devs.travels.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.devs.travels.databuilder.provider;
 
 import com.devs.travels.databuilder.builder.UserBuilder;
-import com.devs.travels.domain.dto.UserDTO;
+import com.devs.travels.domain.dto.user.UserDTO;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.util.stream.Stream;

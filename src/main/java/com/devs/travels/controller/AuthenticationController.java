@@ -2,14 +2,15 @@ package com.devs.travels.controller;
 
 import javax.validation.Valid;
 
+import com.devs.travels.domain.dto.user.JwtAuthenticationDTO;
+import com.devs.travels.domain.dto.user.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import com.devs.travels.config.DTOMapper;
 import com.devs.travels.config.security.JwtTokenProvider;
-import com.devs.travels.domain.JwtAuthentication;
-import com.devs.travels.domain.dto.*;
+import com.devs.travels.domain.user.JwtAuthentication;
 import com.devs.travels.service.AuthenticationService;
 
 @RestController

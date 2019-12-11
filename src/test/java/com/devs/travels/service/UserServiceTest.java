@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.devs.travels.databuilder.builder.UserBuilder;
-import com.devs.travels.domain.User;
+import com.devs.travels.domain.user.User;
 import com.devs.travels.exception.ConflictException;
 import com.devs.travels.repository.UserRepository;
 import com.devs.travels.service.client.TokenGeneratorClient;
@@ -53,7 +53,7 @@ class UserServiceTest {
         User userCreated = new UserBuilder().userMock();
         when(repository.save(user)).thenReturn(userCreated);
 
-        User employee = service.createEmployee(user);
+        User employee = service.create(user);
 
         assertNotNull(employee);
         assertTrue(employee.isActive());
@@ -66,7 +66,7 @@ class UserServiceTest {
     void shouldExceptionWhenUserInvalid() {
     	 when(repository.existsByEmailOrCpf(user.getEmail(), user.getCpf())).thenReturn(Boolean.TRUE);
          
-    	 assertThrows(ConflictException.class, () -> service.createEmployee(user), 
+    	 assertThrows(ConflictException.class, () -> service.create(user),
     			 UserService.THIS_EMAIL_OR_CPF_IS_ALREADY_USED );
     }
 

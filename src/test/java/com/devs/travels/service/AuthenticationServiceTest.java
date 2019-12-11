@@ -1,7 +1,7 @@
 package com.devs.travels.service;
 
 import com.devs.travels.databuilder.builder.LoginBuilder;
-import com.devs.travels.domain.Login;
+import com.devs.travels.domain.user.Login;
 import com.devs.travels.exception.NotFoundException;
 import com.devs.travels.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;

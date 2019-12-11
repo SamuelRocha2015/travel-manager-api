@@ -1,4 +1,4 @@
-package com.devs.travels.domain;
+package com.devs.travels.domain.user;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

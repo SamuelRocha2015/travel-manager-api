@@ -1,4 +1,4 @@
-package com.devs.travels.domain;
+package com.devs.travels.domain.user;
 
 
 import lombok.Data;

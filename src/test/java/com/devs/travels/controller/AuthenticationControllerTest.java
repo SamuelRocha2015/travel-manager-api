@@ -2,7 +2,7 @@ package com.devs.travels.controller;
 
 import com.devs.travels.config.security.JwtTokenProvider;
 import com.devs.travels.databuilder.builder.LoginBuilder;
-import com.devs.travels.domain.dto.LoginDTO;
+import com.devs.travels.domain.dto.user.LoginDTO;
 import com.devs.travels.service.AuthenticationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

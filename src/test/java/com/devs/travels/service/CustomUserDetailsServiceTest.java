@@ -1,7 +1,7 @@
 package com.devs.travels.service;
 
 import com.devs.travels.databuilder.builder.UserBuilder;
-import com.devs.travels.domain.RoleEnum;
+import com.devs.travels.domain.user.Role;
 import com.devs.travels.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import com.devs.travels.domain.User;
+import com.devs.travels.domain.user.User;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +33,7 @@ public class CustomUserDetailsServiceTest {
     @BeforeEach
     void setUp() {
         user = new UserBuilder().build();
-        user.setRole(RoleEnum.ROLE_EMPLOYEE);
+        user.setRole(Role.ROLE_EMPLOYEE);
     }
 
     @Test

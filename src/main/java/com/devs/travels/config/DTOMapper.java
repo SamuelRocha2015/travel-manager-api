@@ -1,11 +1,11 @@
 package com.devs.travels.config;
 
-import com.devs.travels.domain.JwtAuthentication;
-import com.devs.travels.domain.Login;
-import com.devs.travels.domain.User;
-import com.devs.travels.domain.dto.JwtAuthenticationDTO;
-import com.devs.travels.domain.dto.LoginDTO;
-import com.devs.travels.domain.dto.UserDTO;
+import com.devs.travels.domain.user.JwtAuthentication;
+import com.devs.travels.domain.user.Login;
+import com.devs.travels.domain.user.User;
+import com.devs.travels.domain.dto.user.JwtAuthenticationDTO;
+import com.devs.travels.domain.dto.user.LoginDTO;
+import com.devs.travels.domain.dto.user.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -23,9 +23,11 @@ public interface DTOMapper {
     JwtAuthenticationDTO toJwtAuthenticationDTO(JwtAuthentication entity);
 
     UserDTO toUserDto(User entity);
-    
+
+    User toUser(UserDTO dto);
+
     LoginDTO toLoginDTO(Login entity);
     
     Login toLogin(LoginDTO dto);
-    
+
 }

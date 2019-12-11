@@ -1,4 +1,4 @@
-package com.devs.travels.domain;
+package com.devs.travels.domain.user;
 
 import com.devs.travels.domain.audit.UserDateAudit;
 import lombok.Data;
@@ -31,7 +31,7 @@ public class User extends UserDateAudit {
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE", length = 20)
-    private RoleEnum role;
+    private Role role;
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;
@@ -43,6 +43,10 @@ public class User extends UserDateAudit {
     @Column(name = "IS_ACTIVE")
     private boolean isActive = Boolean.TRUE;
 
+    public void setPassword(String password) {
+
+        this.password = password;
+    }
 
     @Override
     public boolean equals(Object o) {

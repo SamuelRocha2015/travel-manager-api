@@ -1,8 +1,8 @@
 package com.devs.travels.databuilder.builder;
 
 import com.devs.travels.config.DTOMapper;
-import com.devs.travels.domain.Login;
-import com.devs.travels.domain.dto.LoginDTO;
+import com.devs.travels.domain.user.Login;
+import com.devs.travels.domain.dto.user.LoginDTO;
 
 public class LoginBuilder {
 

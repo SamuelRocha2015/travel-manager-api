@@ -1,7 +1,7 @@
 package com.devs.travels.config.security;
 
 
-import com.devs.travels.domain.UserPrincipal;
+import com.devs.travels.domain.user.UserPrincipal;
 import com.devs.travels.repository.UserRepository;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;

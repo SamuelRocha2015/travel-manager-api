@@ -1,6 +1,5 @@
-package com.devs.travels.domain.dto;
+package com.devs.travels.domain.dto.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -20,9 +19,6 @@ public class UserDTO {
 
     @NotNull
     private String name;
-
-    @JsonIgnore
-    private String role;
 
     @NotNull
     @Size(max = 50)

@@ -1,7 +1,7 @@
 package com.devs.travels.controller;
 
 import com.devs.travels.databuilder.builder.UserBuilder;
-import com.devs.travels.domain.dto.UserDTO;
+import com.devs.travels.domain.dto.user.UserDTO;
 import com.devs.travels.exception.ConflictException;
 import com.devs.travels.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -62,7 +62,7 @@ public class EmployeeControllerTest extends AbstractTest  {
 
     @Test
     void shouldStatus409WhenCreateWithSameInformation() throws Exception {
-    	when(service.createEmployee(any())).thenThrow(ConflictException.class);
+    	when(service.create(any())).thenThrow(ConflictException.class);
     	String uri = BASE_URL + REGISTER;
     	
     	mvc.perform(MockMvcRequestBuilders

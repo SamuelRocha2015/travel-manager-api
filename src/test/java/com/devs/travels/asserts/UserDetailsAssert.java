@@ -2,7 +2,7 @@ package com.devs.travels.asserts;
 
 import org.assertj.core.api.AbstractAssert;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.devs.travels.domain.User;
+import com.devs.travels.domain.user.User;
 
 public class UserDetailsAssert extends AbstractAssert<UserDetailsAssert, UserDetails> {
 

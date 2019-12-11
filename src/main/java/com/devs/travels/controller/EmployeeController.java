@@ -1,8 +1,8 @@
 package com.devs.travels.controller;
 
 import com.devs.travels.config.DTOMapper;
-import com.devs.travels.domain.User;
-import com.devs.travels.domain.dto.UserDTO;
+import com.devs.travels.domain.dto.user.UserDTO;
+import com.devs.travels.domain.user.User;
 import com.devs.travels.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +27,6 @@ public class EmployeeController implements MVCController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@Valid @RequestBody UserDTO userDTO) {
-        return service.createEmployee(mapper.toEmployeeUser(userDTO));
+        return service.create(mapper.toEmployeeUser(userDTO));
     }
 }

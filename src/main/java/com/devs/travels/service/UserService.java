@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.devs.travels.domain.User;
+import com.devs.travels.domain.user.User;
 import com.devs.travels.exception.ConflictException;
 import com.devs.travels.repository.UserRepository;
 import com.devs.travels.service.client.TokenGeneratorClient;
@@ -26,7 +26,7 @@ public class UserService {
         this.tokenGenerator = tokenGenerator;
     }
 
-    public User createEmployee(User user) {
+    public User create(User user) {
         if (isUserRegistered(user))
             throw new ConflictException(THIS_EMAIL_OR_CPF_IS_ALREADY_USED);
 

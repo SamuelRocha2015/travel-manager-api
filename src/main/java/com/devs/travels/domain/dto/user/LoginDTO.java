@@ -1,4 +1,4 @@
-package com.devs.travels.domain.dto;
+package com.devs.travels.domain.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

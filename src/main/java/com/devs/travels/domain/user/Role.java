@@ -1,6 +1,6 @@
-package com.devs.travels.domain;
+package com.devs.travels.domain.user;
 
-public enum RoleEnum {
+public enum Role {
 
     ROLE_ADMIN("Enterprise Administrator"),
     ROLE_EMPLOYEE("Common Employee"),
@@ -9,7 +9,7 @@ public enum RoleEnum {
 
     private String label;
 
-    RoleEnum(String label) {
+    Role(String label) {
         this.label = label;
     }
 

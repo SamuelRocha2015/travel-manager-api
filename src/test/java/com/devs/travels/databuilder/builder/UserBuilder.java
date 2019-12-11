@@ -1,8 +1,8 @@
 package com.devs.travels.databuilder.builder;
 
 import com.devs.travels.config.DTOMapper;
-import com.devs.travels.domain.User;
-import com.devs.travels.domain.dto.UserDTO;
+import com.devs.travels.domain.user.User;
+import com.devs.travels.domain.dto.user.UserDTO;
 
 public class UserBuilder {
 
