@@ -20,7 +20,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class EmployeeControllerTest extends AbstractTest  {
 
     private static final String BASE_URL = "/v1/employee";
-    public static final String REGISTER = "/";
 
     @Mock
     private UserService service;
@@ -28,22 +27,21 @@ public class EmployeeControllerTest extends AbstractTest  {
     @InjectMocks
     private EmployeeController controller;
 
-    private UserDTO userToCreate;
+    private UserDTO dto;
 
     @BeforeEach
     void setUp() {
         mvc = getMockMvc(controller);
-        userToCreate = new UserBuilder().buildDTO();
+        dto = new UserBuilder().buildDTO();
     }
 
     @Test
     void shouldStatus201WhenCreateUserValid() throws Exception{
-        String uri = BASE_URL + REGISTER;
 
         mvc.perform(MockMvcRequestBuilders
-                .post(uri)
+                .post(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(userToCreate)))
+                .content(mapToJson(dto)))
                 .andExpect(status().is(HTTP_STATUS_CREATED));
     }
 
@@ -51,10 +49,9 @@ public class EmployeeControllerTest extends AbstractTest  {
     @ParameterizedTest(name =  "{index} - {1}")
     @MethodSource("com.devs.travels.databuilder.provider.UserProvider#provider")
     void shouldStatus400WhenCreateUserNotValid(UserDTO dto, String titleTest) throws Exception{
-        String uri = BASE_URL + REGISTER;
 
         mvc.perform(MockMvcRequestBuilders
-                .post(uri)
+                .post(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(mapToJson(dto)))
                 .andExpect(status().is(HTTP_BAD_REQUEST));
@@ -63,12 +60,11 @@ public class EmployeeControllerTest extends AbstractTest  {
     @Test
     void shouldStatus409WhenCreateWithSameInformation() throws Exception {
     	when(service.createEmployee(any())).thenThrow(ConflictException.class);
-    	String uri = BASE_URL + REGISTER;
     	
     	mvc.perform(MockMvcRequestBuilders
-                .post(uri)
+                .post(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(userToCreate )))
+                .content(mapToJson(dto )))
                 .andExpect(status().is(HTTP_CONFLICT));
     }
 }

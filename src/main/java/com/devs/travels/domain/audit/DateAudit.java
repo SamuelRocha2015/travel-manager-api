@@ -22,5 +22,8 @@ public abstract class DateAudit {
     @LastModifiedDate
     @Column(name = "UPDATED_AT", nullable = false)
     private Instant updatedAt;
+    
+    @Column(name = "IS_ACTIVE")
+    private boolean isActive = Boolean.TRUE;
 
 }

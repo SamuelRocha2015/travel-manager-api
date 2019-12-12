@@ -31,12 +31,12 @@ public class AuthenticationControllerTest extends AbstractTest {
     @Mock
     private AuthenticationService service;
 
-    private LoginDTO loginDTO;
+    private LoginDTO dto;
 
     @BeforeEach
     void setUp() {
         mvc = getMockMvc(controller);
-        loginDTO = new LoginBuilder().buildDTO();
+        dto = new LoginBuilder().buildDTO();
     }
 
 
@@ -52,7 +52,7 @@ public class AuthenticationControllerTest extends AbstractTest {
         mvc.perform(MockMvcRequestBuilders
                 .post(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(mapToJson(loginDTO)))
+                .content(mapToJson(dto)))
                 .andExpect(status().is(HTTP_STATUS_OK));
 
     }
@@ -70,7 +70,7 @@ public class AuthenticationControllerTest extends AbstractTest {
     }
 
     private UsernamePasswordAuthenticationToken getAuthenticationToken() {
-        return new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword());
+        return new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword());
     }
 
 }

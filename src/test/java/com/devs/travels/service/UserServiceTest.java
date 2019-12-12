@@ -21,11 +21,10 @@ import com.devs.travels.domain.User;
 import com.devs.travels.exception.ConflictException;
 import com.devs.travels.repository.UserRepository;
 import com.devs.travels.service.client.TokenGeneratorClient;
+import static com.devs.travels.util.Constants.DEFAULT_ID;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
-
-    private static final Long DEFAULT_ID = 123L;
 
     private User user;
 
@@ -50,7 +49,7 @@ class UserServiceTest {
     void shouldCreateUserWhenUserValid() {
         when(repository.existsByEmailOrCpf(user.getEmail(), user.getCpf())).thenReturn(Boolean.FALSE);
 
-        User userCreated = new UserBuilder().userMock();
+        User userCreated = new UserBuilder().buildMock();
         when(repository.save(user)).thenReturn(userCreated);
 
         User employee = service.createEmployee(user);

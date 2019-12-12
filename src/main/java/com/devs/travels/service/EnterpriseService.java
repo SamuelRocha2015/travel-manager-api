@@ -12,7 +12,7 @@ import lombok.NonNull;
 @Service
 public class EnterpriseService {
 
-	private static final String THIS_CNPJ_IS_ALREADY_USED = "This CNPJ is already used.";
+	protected static final String THIS_CNPJ_IS_ALREADY_USED = "This CNPJ is already used.";
 	
 	private final EnterpriseRepository repository;
 

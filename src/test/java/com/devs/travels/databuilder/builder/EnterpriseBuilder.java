@@ -3,6 +3,7 @@ package com.devs.travels.databuilder.builder;
 import com.devs.travels.config.DTOMapper;
 import com.devs.travels.domain.Enterprise;
 import com.devs.travels.domain.dto.EnterpriseDTO;
+import static com.devs.travels.util.Constants.DEFAULT_ID;
 
 public class EnterpriseBuilder {
 
@@ -20,6 +21,11 @@ public class EnterpriseBuilder {
 		return enterprise;
     }
 	
+	public Enterprise buildMock(){
+		enterprise.setId(DEFAULT_ID);
+		return enterprise;
+	}
+
 	public EnterpriseDTO buildDTO(){
 		return DTOMapper.INSTANCE.toEnterpriseDTO(enterprise);
 	}

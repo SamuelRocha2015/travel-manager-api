@@ -20,7 +20,6 @@ public class Enterprise extends DateAudit {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
     private Long id;
     private String name;
     private String fantasyName;

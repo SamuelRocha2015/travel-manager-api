@@ -40,10 +40,6 @@ public class User extends UserDateAudit {
     @Column(name = "CPF", length = 11, unique = true, nullable = false)
     private String cpf;
 
-    @Column(name = "IS_ACTIVE")
-    private boolean isActive = Boolean.TRUE;
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -3,6 +3,7 @@ package com.devs.travels.databuilder.builder;
 import com.devs.travels.config.DTOMapper;
 import com.devs.travels.domain.User;
 import com.devs.travels.domain.dto.UserDTO;
+import static com.devs.travels.util.Constants.DEFAULT_ID;
 
 public class UserBuilder {
 
@@ -20,9 +21,9 @@ public class UserBuilder {
         return user;
     }
 
-    public User userMock(){
+    public User buildMock(){
         user.setActive(Boolean.TRUE);
-        user.setId(123L);
+        user.setId(DEFAULT_ID);
         return user;
     }
 
