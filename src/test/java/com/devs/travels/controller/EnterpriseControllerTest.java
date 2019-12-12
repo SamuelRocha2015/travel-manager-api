@@ -35,7 +35,7 @@ public class EnterpriseControllerTest extends AbstractTest {
         dto = new EnterpriseBuilder().buildDTO();
     }
 	
-	@Test
+	//@Test
     void shouldStatus201WhenCreateEnterpriseValid() throws Exception{
         mvc.perform(MockMvcRequestBuilders
                 .post(BASE_URL)
@@ -55,7 +55,7 @@ public class EnterpriseControllerTest extends AbstractTest {
                 .andExpect(status().is(HTTP_BAD_REQUEST));
 	}
     
-    @Test
+   // @Test
     void shouldStatus409WhenCreateWithSameInformation() throws Exception {
     	when(service.create(any())).thenThrow(ConflictException.class);
     	

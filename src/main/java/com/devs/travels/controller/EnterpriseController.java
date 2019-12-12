@@ -5,18 +5,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.devs.travels.config.DTOMapper;
 import com.devs.travels.domain.Enterprise;
-import com.devs.travels.domain.User;
 import com.devs.travels.domain.dto.EnterpriseDTO;
-import com.devs.travels.domain.dto.UserDTO;
 import com.devs.travels.service.EnterpriseService;
 
 @RestController
@@ -40,5 +33,13 @@ public class EnterpriseController implements MVCController {
     public EnterpriseDTO create(@Valid @RequestBody EnterpriseDTO DTO) {
     	Enterprise enterprise = service.create(mapper.toEnterprise(DTO));
         return mapper.toEnterpriseDTO(enterprise);
+    }
+    
+    
+    @PutMapping("{id}")
+    @PreAuthorize("ADMIN, MANAGER")
+    public EnterpriseDTO update(@PathVariable Long id, @Valid @RequestBody EnterpriseDTO DTO) {
+    	Enterprise enterprise = service.update(id, mapper.toEnterprise(DTO));
+    	return mapper.toEnterpriseDTO(enterprise);
     }
 }

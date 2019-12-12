@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devs.travels.domain.Enterprise;
+import com.devs.travels.exception.BadRequestException;
 import com.devs.travels.exception.ConflictException;
+import com.devs.travels.exception.NotFoundException;
 import com.devs.travels.repository.EnterpriseRepository;
 
 import lombok.NonNull;
@@ -33,6 +35,16 @@ public class EnterpriseService {
 	}
 	
 	private Enterprise createEnterprise(Enterprise enterprise) {
+		return repository.save(enterprise);
+	}
+
+	public Enterprise update(Long id, Enterprise enterprise) {
+		if(id != enterprise.getId())
+			throw new BadRequestException();
+		
+		  repository.findById(id)
+      		.orElseThrow(NotFoundException::new);
+		  
 		return repository.save(enterprise);
 	}
 }
