@@ -36,7 +36,7 @@ public class EnterpriseController implements MVCController {
     }
     
     
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("ADMIN, MANAGER")
     public EnterpriseDTO update(@PathVariable Long id, @Valid @RequestBody EnterpriseDTO DTO) {
     	Enterprise enterprise = service.update(id, mapper.toEnterprise(DTO));

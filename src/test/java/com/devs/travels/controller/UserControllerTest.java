@@ -43,6 +43,6 @@ public class UserControllerTest extends AbstractTest  {
                 .get(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(mapToJson(tokenDTOtoCreate)))
-                .andExpect(status().is(HTTP_STATUS_OK));
+                .andExpect(status().is(HTTP_OK));
     }
 }

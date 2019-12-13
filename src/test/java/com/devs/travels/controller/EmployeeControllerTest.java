@@ -42,7 +42,7 @@ public class EmployeeControllerTest extends AbstractTest  {
                 .post(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(mapToJson(dto)))
-                .andExpect(status().is(HTTP_STATUS_CREATED));
+                .andExpect(status().is(HTTP_CREATED));
     }
 
 

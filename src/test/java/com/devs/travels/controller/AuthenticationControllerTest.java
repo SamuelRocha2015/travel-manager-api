@@ -53,7 +53,7 @@ public class AuthenticationControllerTest extends AbstractTest {
                 .post(uri)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(mapToJson(dto)))
-                .andExpect(status().is(HTTP_STATUS_OK));
+                .andExpect(status().is(HTTP_OK));
 
     }
 

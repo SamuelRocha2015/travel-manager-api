@@ -14,11 +14,12 @@ import java.io.IOException;
 @ExtendWith(SpringExtension.class)
 public class AbstractTest {
 
-    static final int HTTP_STATUS_NO_CONTENT = 204;
-    static final int HTTP_STATUS_CREATED = 201;
-    static final int HTTP_STATUS_OK = 200;
+    static final int HTTP_NO_CONTENT = 204;
+    static final int HTTP_CREATED = 201;
+    static final int HTTP_OK = 200;
     static final int HTTP_BAD_REQUEST = 400;
     static final int HTTP_CONFLICT = 409;
+    static final int HTTP_NOT_FOUND = 404;
 
     MockMvc mvc;
 
